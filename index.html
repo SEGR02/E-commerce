@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alkalami&family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/normalize.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/style.css">
+  <title>Laptop store</title>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="nav-ancor-text">
+        <div class="nav-first-item">
+          <a onclick="sumCar()" href="#"><img width="30px" height="25px" src="laptop-screen.png" alt="laptop"></a>
+          <a href="">Store</a>
+        </div>
+        <div class="nav-second-item">
+          <a href="">Home</a>
+          <a href="">Products</a>
+        </div>
+      </div>
+      <div>
+        <a onclick="showCar()">
+          <img width="25px" height="25px" src="shopping-bag.png" alt="cart">
+          <span id="numberCart">0</span>
+        </a>
+      </div>
+    </nav>
+    <section class="second-header-container">
+      <div class="header-first-sub-container">
+        <img width="400px" height="325px" src="msi-sword.png" alt="msiLaptop">
+      </div>
+      <div class="header-second-sub-container">
+        <h1>New laptops<br> <span>GAMER</span> 2022</h1>
+        <h2>MSI Sword 15</h2>
+        <ul>
+          <li>Core I7 11800H</li>
+          <li>16 GB RAM</li>
+          <li>NVIDIA GeForce<br> RTX 3050 Ti</li>
+          <li>512 GB SSD</li>
+          <li>144Hz Full HD IPS</li>
+        </ul>
+        <h3 class="red">$1149.00</h3>
+        <button class="btn btn-list" onclick="toCart(), sumCarMSI()">Add to list</button>
+        <button class="btn btn-read">Read more</button>
+      </div>
+    </section>
+  </header>
+
+
+  <main>
+    <div class="products-container">
+      <article class="product">
+        <div class="image-product">
+          <img width="220px" height="180px" src="hp-pavilion.png" alt="laptop">
+        </div>
+        <div class="data-product">
+          <div class="data">
+            <h3>HP Pavilion Gaming</h3>
+            <p class="price-hp">$799.00</p>
+          </div>
+          <div class="button">
+            <button class="button-hp" onclick="toCart(), sumCarHP()">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="image-product">
+          <img width="220px" height="180px" src="acer-nitro.png" alt="laptop">
+        </div>
+        <div class="data-product">
+          <div class="data">
+            <h3>ACER Nitro</h3>
+            <p class="price-acer">$720.00</p>
+          </div>
+          <div class="button">
+            <button class="button-acer" onclick="toCart(), sumCarAcer()">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="product">
+        <div class="image-product">
+          <img width="220px" height="180px" src="lenovo-legion.png" alt="laptop">
+        </div>  
+        <div class="data-product">
+          <div class="data">
+            <h3>LENOVO Legion</h3>
+            <p class="price-lenovo">$1328.00</p>
+          </div>
+          <div class="button">
+            <button class="button-lenovo" onclick="toCart(), sumCarLenovo()">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+
+  <footer>
+    <p>© Sebastian Gómez. All rigths reserved</p>
+  </footer>
+  <div id="showCart"></div>
+</body>
+<script src="https://kit.fontawesome.com/fad97067a6.js" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+</html>
