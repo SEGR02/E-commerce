@@ -18,10 +18,10 @@ let priceAcer = document.querySelector('.price-acer');
 let priceLenovo = document.querySelector('.price-lenovo');
 
 // Contadores
-let quantityMSI = 0;
-let quantityHP = 0;
-let quantityAcer = 0;
-let quantityLenovo = 0;
+let quantityMSI = JSON.parse(localStorage.getItem("quantity-MSI")) ?? 0;
+let quantityHP = JSON.parse(localStorage.getItem("quantity-HP")) ?? 0;
+let quantityAcer = JSON.parse(localStorage.getItem("quantity-acer")) ?? 0;
+let quantityLenovo = JSON.parse(localStorage.getItem("quantity-lenovo")) ?? 0;
 
 priceMSI = Number(priceMSI.textContent.slice(1));
 priceHP = Number(priceHP.textContent.slice(1));
@@ -99,19 +99,87 @@ function checkOut(){
   localStorage.setItem("cartBuy", JSON.stringify(cartToBuy));
   localStorage.setItem("sum", JSON.stringify(sumCart));
   localStorage.setItem("card-data", JSON.stringify(cardData));
+  localStorage.setItem("quantity-MSI", JSON.stringify(quantityMSI));
+  localStorage.setItem("quantity-HP", JSON.stringify(quantityHP));
   showCar();
 }
 
 function sumCarMSI(){
-
-  if(display.className == 'showCart'){
-    quantityMSI++;
-    sumCart = sumCart + priceMSI;
-    cartToBuy.push(``)
-    localStorage.setItem("cartBuy", JSON.stringify(cartToBuy));
-    localStorage.setItem("sum", JSON.stringify(sumCart));
-    cardData.push(`
-    <article class="data-laptop-card">
+  
+  if(quantityMSI == 0){
+    if(display.className == 'showCart'){
+      console.log('entra en if');
+      quantityMSI++;
+      sumCart = sumCart + priceMSI;
+      localStorage.setItem("quantity-MSI", JSON.stringify(quantityMSI));
+      localStorage.setItem("sum", JSON.stringify(sumCart));
+      cardData.push(`
+      <article class="data-laptop-card MSI">
+        <div class="card-image">
+          <div class="cart-buy">
+            <img width="125px" height="100px" src="msi-sword.png" alt="msiLaptop">
+          </div>
+        </div>
+        <div class="card-data">
+          <div class="card-title">
+            <p>MSI Sword 15</p>
+          </div>
+          <div class="card-price">
+            <p>Subtotal: $${priceMSI.toFixed(2)}</p>
+          </div>
+          <div class="card-quantity">
+            <i class="fa-solid fa-minus btn"></i>
+            <p id="quantityMSIShow">${quantityMSI}</p>
+            <i class="fa-solid fa-plus btn"></i>
+            <i class="fa-solid fa-trash margin-left btn"></i>
+          </div>
+        </div>
+      </article>
+      `);
+      localStorage.setItem("card-data", JSON.stringify(cardData));
+      showCar();
+    } else {
+      console.log('entra en if');
+      quantityMSI++;
+      sumCart = sumCart + priceMSI;
+      localStorage.setItem("quantity-MSI", JSON.stringify(quantityMSI));
+      localStorage.setItem("sum", JSON.stringify(sumCart));
+      cardData.push(`
+      <article class="data-laptop-card MSI">
+        <div class="card-image">
+          <div class="cart-buy">
+            <img width="125px" height="100px" src="msi-sword.png" alt="msiLaptop">
+          </div>
+        </div>
+        <div class="card-data">
+          <div class="card-title">
+            <p>MSI Sword 15</p>
+          </div>
+          <div class="card-price">
+            <p>Subtotal: $${priceMSI.toFixed(2)}</p>
+          </div>
+          <div class="card-quantity">
+            <i class="fa-solid fa-minus btn"></i>
+            <p id="quantityMSIShow">${quantityMSI}</p>
+            <i class="fa-solid fa-plus btn"></i>
+            <i class="fa-solid fa-trash margin-left btn"></i>
+          </div>
+        </div>
+      </article>
+      `);
+      localStorage.setItem("card-data", JSON.stringify(cardData));
+    }
+  } else if(quantityMSI>=1) {
+    if(display.className == 'showCart'){
+      console.log("Si entra");
+      quantityMSI++;
+      sumCart = sumCart + priceMSI;
+      localStorage.setItem("quantity-MSI", JSON.stringify(quantityMSI));
+      localStorage.setItem("sum", JSON.stringify(sumCart));
+      cardData.splice(cardData.find(() => {
+        `<article class="data-laptop-card MSI">`
+      }),1,`
+      <article class="data-laptop-card MSI">
       <div class="card-image">
         <div class="cart-buy">
           <img width="125px" height="100px" src="msi-sword.png" alt="msiLaptop">
@@ -126,23 +194,23 @@ function sumCarMSI(){
         </div>
         <div class="card-quantity">
           <i class="fa-solid fa-minus btn"></i>
-          <p>${quantityMSI}</p>
+          <p id="quantityMSIShow">${quantityMSI}</p>
           <i class="fa-solid fa-plus btn"></i>
           <i class="fa-solid fa-trash margin-left btn"></i>
         </div>
       </div>
-    </article>
-    `);
+    </article>`)
     localStorage.setItem("card-data", JSON.stringify(cardData));
-    showCar();
-  } else {
-    quantityMSI++;
-    sumCart = sumCart + priceMSI;
-    cartToBuy.push(``)
-    localStorage.setItem("cartBuy", JSON.stringify(cartToBuy));
-    localStorage.setItem("sum", JSON.stringify(sumCart));
-    cardData.push(`
-    <article class="data-laptop-card">
+      showCar();
+    } else {
+      quantityMSI++;
+      sumCart = sumCart + priceMSI;
+      localStorage.setItem("quantity-MSI", JSON.stringify(quantityMSI));
+      localStorage.setItem("sum", JSON.stringify(sumCart));
+      cardData.splice(cardData.find(() => {
+        `<article class="data-laptop-card MSI">`
+      }),1,`
+      <article class="data-laptop-card MSI">
       <div class="card-image">
         <div class="cart-buy">
           <img width="125px" height="100px" src="msi-sword.png" alt="msiLaptop">
@@ -157,84 +225,149 @@ function sumCarMSI(){
         </div>
         <div class="card-quantity">
           <i class="fa-solid fa-minus btn"></i>
-          <p>${quantityMSI}</p>
+          <p id="quantityMSIShow">${quantityMSI}</p>
           <i class="fa-solid fa-plus btn"></i>
           <i class="fa-solid fa-trash margin-left btn"></i>
         </div>
       </div>
-    </article>
-    `);
+    </article>`)
     localStorage.setItem("card-data", JSON.stringify(cardData));
+    }
   }
-
 }
 
 function sumCarHP(){
-
-  if(display.className == 'showCart'){
-    quantityHP++;
-    sumCart = sumCart + priceHP;
-    cartToBuy.push(``)
-    localStorage.setItem("cartBuy", JSON.stringify(cartToBuy));
-    localStorage.setItem("sum", JSON.stringify(sumCart));
-    cardData.push(`
-    <article class="data-laptop-card">
+  
+  if(quantityHP == 0){
+    if(display.className == 'showCart'){
+      console.log('entra en if');
+      quantityHP++;
+      sumCart = sumCart + priceHP;
+      localStorage.setItem("quantity-HP", JSON.stringify(quantityHP));
+      localStorage.setItem("sum", JSON.stringify(sumCart));
+      cardData.push(`
+      <article class="data-laptop-card HP">
+        <div class="card-image">
+          <div class="cart-buy">
+            <img width="125px" height="100px" src="hp-pavilion.png" alt="HPLaptop">
+          </div>
+        </div>
+        <div class="card-data">
+          <div class="card-title">
+            <p>HP Pavilion Gamer</p>
+          </div>
+          <div class="card-price">
+            <p>Subtotal: $${priceHP.toFixed(2)}</p>
+          </div>
+          <div class="card-quantity">
+            <i class="fa-solid fa-minus btn"></i>
+            <p id="quantityMSIShow">${quantityHP}</p>
+            <i class="fa-solid fa-plus btn"></i>
+            <i class="fa-solid fa-trash margin-left btn"></i>
+          </div>
+        </div>
+      </article>
+      `);
+      localStorage.setItem("card-data", JSON.stringify(cardData));
+      showCar();
+    } else {
+      console.log('entra en if');
+      quantityHP++;
+      sumCart = sumCart + priceHP;
+      localStorage.setItem("quantity-HP", JSON.stringify(quantityHP));
+      localStorage.setItem("sum", JSON.stringify(sumCart));
+      cardData.push(`
+      <article class="data-laptop-card HP">
+        <div class="card-image">
+          <div class="cart-buy">
+            <img width="125px" height="100px" src="hp-pavilion.png" alt="HPLaptop">
+          </div>
+        </div>
+        <div class="card-data">
+          <div class="card-title">
+            <p>HP Pavilion Gamer</p>
+          </div>
+          <div class="card-price">
+            <p>Subtotal: $${priceHP.toFixed(2)}</p>
+          </div>
+          <div class="card-quantity">
+            <i class="fa-solid fa-minus btn"></i>
+            <p id="quantityMSIShow">${quantityHP}</p>
+            <i class="fa-solid fa-plus btn"></i>
+            <i class="fa-solid fa-trash margin-left btn"></i>
+          </div>
+        </div>
+      </article>
+      `);
+      localStorage.setItem("card-data", JSON.stringify(cardData));
+    }
+  } else if(quantityHP>=1) {
+    if(display.className == 'showCart'){
+      console.log("Si entra");
+      quantityHP++;
+      sumCart = sumCart + priceHP;
+      localStorage.setItem("quantity-HP", JSON.stringify(quantityHP));
+      localStorage.setItem("sum", JSON.stringify(sumCart));
+      cardData.splice(cardData.find(() => {
+        `
+      <article class="data-laptop-card HP">`
+      }),1,`
+      <article class="data-laptop-card HP">
       <div class="card-image">
         <div class="cart-buy">
-          <img width="125px" height="100px" src="hp-pavilion.png" alt="msiLaptop">
+          <img width="125px" height="100px" src="hp-pavilion.png" alt="HPLaptop">
         </div>
       </div>
       <div class="card-data">
         <div class="card-title">
-          <p>HP Pavilion Gaming</p>
+          <p>HP Pavilion Gamer</p>
         </div>
         <div class="card-price">
           <p>Subtotal: $${priceHP.toFixed(2)}</p>
         </div>
         <div class="card-quantity">
           <i class="fa-solid fa-minus btn"></i>
-          <p>${quantityHP}</p>
+          <p id="quantityMSIShow">${quantityHP}</p>
           <i class="fa-solid fa-plus btn"></i>
           <i class="fa-solid fa-trash margin-left btn"></i>
         </div>
       </div>
-    </article>
-    `);
+    </article>`)
     localStorage.setItem("card-data", JSON.stringify(cardData));
-    showCar();
-  } else {
-    quantityHP++;
-    sumCart = sumCart + priceHP;
-    cartToBuy.push(``)
-    localStorage.setItem("cartBuy", JSON.stringify(cartToBuy));
-    localStorage.setItem("sum", JSON.stringify(sumCart));
-    cardData.push(`
-    <article class="data-laptop-card">
+      showCar();
+    } else {
+      quantityHP++;
+      sumCart = sumCart + priceHP;
+      localStorage.setItem("quantity-HP", JSON.stringify(quantityHP));
+      localStorage.setItem("sum", JSON.stringify(sumCart));
+      cardData.splice(cardData.find(() => {
+        `
+      <article class="data-laptop-card HP">`
+      }),1,`
+      <article class="data-laptop-card HP">
       <div class="card-image">
         <div class="cart-buy">
-          <img width="125px" height="100px" src="hp-pavilion.png" alt="msiLaptop">
+          <img width="125px" height="100px" src="hp-pavilion.png" alt="HPLaptop">
         </div>
       </div>
       <div class="card-data">
         <div class="card-title">
-          <p>HP Pavilion Gaming</p>
+          <p>HP Pavilion Gamer</p>
         </div>
         <div class="card-price">
           <p>Subtotal: $${priceHP.toFixed(2)}</p>
         </div>
         <div class="card-quantity">
           <i class="fa-solid fa-minus btn"></i>
-          <p>${quantityHP}</p>
+          <p id="quantityMSIShow">${quantityHP}</p>
           <i class="fa-solid fa-plus btn"></i>
           <i class="fa-solid fa-trash margin-left btn"></i>
         </div>
       </div>
-    </article>
-    `);
+    </article>`)
     localStorage.setItem("card-data", JSON.stringify(cardData));
-    showCar();
+    }
   }
-
 }
 
 function sumCarAcer(){
@@ -242,8 +375,6 @@ function sumCarAcer(){
   if(display.className == 'showCart'){
     quantityAcer++;
     sumCart = sumCart + priceAcer;
-    cartToBuy.push(``)
-    localStorage.setItem("cartBuy", JSON.stringify(cartToBuy));
     localStorage.setItem("sum", JSON.stringify(sumCart));
     cardData.push(`
     <article class="data-laptop-card">
@@ -273,8 +404,6 @@ function sumCarAcer(){
   } else {
     quantityAcer++;
     sumCart = sumCart + priceAcer;
-    cartToBuy.push(``)
-    localStorage.setItem("cartBuy", JSON.stringify(cartToBuy));
     localStorage.setItem("sum", JSON.stringify(sumCart));
     cardData.push(`
     <article class="data-laptop-card">
@@ -309,8 +438,6 @@ function sumCarLenovo(){
   if (display.className == 'showCart'){
     quantityLenovo++;
     sumCart = sumCart + priceLenovo;
-    cartToBuy.push(``)
-    localStorage.setItem("cartBuy", JSON.stringify(cartToBuy));
     localStorage.setItem("sum", JSON.stringify(sumCart));
     cardData.push(`
     <article class="data-laptop-card">
@@ -340,8 +467,6 @@ function sumCarLenovo(){
   } else {
     quantityLenovo++;
     sumCart = sumCart + priceLenovo;
-    cartToBuy.push(``)
-    localStorage.setItem("cartBuy", JSON.stringify(cartToBuy));
     localStorage.setItem("sum", JSON.stringify(sumCart));
     cardData.push(`
     <article class="data-laptop-card">
@@ -368,5 +493,29 @@ function sumCarLenovo(){
     `);
     localStorage.setItem("card-data", JSON.stringify(cardData));
   }
-
 }
+
+console.log(cardData);
+console.log(cardData.join("").indexOf(`<article class="data-laptop-card MSI">
+<div class="card-image">
+  <div class="cart-buy">
+    <img width="125px" height="100px" src="msi-sword.png" alt="msiLaptop">
+  </div>
+</div>
+<div class="card-data">
+  <div class="card-title">
+    <p>MSI Sword 15</p>
+  </div>
+  <div class="card-price">
+    <p>Subtotal: $${priceMSI.toFixed(2)}</p>
+  </div>
+  <div class="card-quantity">
+    <i class="fa-solid fa-minus btn"></i>
+    <p id="quantityMSIShow">${quantityMSI}</p>
+    <i class="fa-solid fa-plus btn"></i>
+    <i class="fa-solid fa-trash margin-left btn"></i>
+  </div>
+</div>
+</article>`));
+  // console.log(hola.length);
+  // console.log(cardData);
