@@ -358,3 +358,21 @@ footer{
   justify-content: center;
   align-items: center;
 }
+
+.checkout {
+  width: 150px;
+  height: 25px;
+  background-color: var(--bg-header-img);
+  border: 1px solid var(--bg-header-img);
+  border-radius: 5px;
+  cursor: pointer; 
+}
+
+#article-button{
+  background-color:var(--bg-header-color);
+  width: 150px;
+  height: 25px;
+  border: 1px solid var(--bg-header-color);
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -42,12 +42,12 @@ function showCar() {
     <div>
       <img src ="bag-empty.png" width="330px" height="300px">
       <h4>Your cart is empty</h4>
-      <p>You can add items to your cart by clicking on the button "Add to list" or "+" on the product page</p>
+      <p>You can add items to your cart by clicking on the <br>button "Add to list" or "+" on the product page</p>
     </div>
     <div>
       <p>0 items</p>
       <p>$ 0.00</p>
-      <button onclick="checkOut()">
+      <button class="btn checkout" onclick="checkOut()">
         <i class="fa-regular fa-square-check"></i>
         Checkout
       </button>
@@ -66,7 +66,7 @@ function showCar() {
     <div>
       <p>${counterCart} items</p>
       <p>$ ${sumCart.toFixed(2)}</p>
-      <button onclick="checkOut()">
+      <button class="btn checkout" onclick="checkOut()">
         <i class="fa-regular fa-square-check"></i>
         Checkout
       </button>
