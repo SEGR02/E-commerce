@@ -76,11 +76,28 @@ header {
   .navbar {
     padding: 0px 40px;
   }
+  #numberCart {
+    right: 35px;
+  }
 }
 
 @media screen and (max-width:400px) {
   .navbar {
     padding: 0px 10px;
+  }
+  #numberCart {
+    right: 5px;
+  }
+  .header-container{
+    height: 750px;
+  }
+  .price-hp, .price-acer, .price-lenovo{
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .title-article{
+    padding-top: 2.5px;
+    margin-bottom: 10px;
   }
   .nav-ancor-text{
     display: flex;
@@ -202,6 +219,9 @@ header{
   .header-second-sub-container{
     margin-left: 50px;
   }
+  .showCart{
+    width: 50vw!important;
+  }
 }
 
 @media screen and (max-width:804px){
@@ -282,8 +302,8 @@ main {
 }
 
 .showCart {
-  width: 400px;
-  height: 800px;
+  width: 30vw;
+  height: 100vh;
   background-color: #fff;
   position: absolute;
   text-align: center;
@@ -375,4 +395,10 @@ footer{
   border: 1px solid var(--bg-header-color);
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media screen and (max-width:500px){
+  .showCart{
+    width: 100vw!important;
+  }
 }

@@ -40,7 +40,7 @@ function showCar() {
       <h3>My cart</h3>
     </div>
     <div>
-      <img src ="bag-empty.png" width="330px" height="300px">
+      <img src ="bag-empty.png" width="280px" height="260px">
       <h4>Your cart is empty</h4>
       <p>You can add items to your cart by clicking on the <br>button "Add to list" or "+" on the product page</p>
     </div>
